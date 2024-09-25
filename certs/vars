@@ -1,0 +1,8 @@
+set_var EASYRSA_REQ_COUNTRY    "XX"
+set_var EASYRSA_REQ_PROVINCE   "Some-Province"
+set_var EASYRSA_REQ_CITY       "Some-City"
+set_var EASYRSA_REQ_ORG        "Some-Org"
+set_var EASYRSA_REQ_EMAIL      "admin@example.com"
+set_var EASYRSA_REQ_OU         "Community"
+set_var EASYRSA_ALGO           "ec"
+set_var EASYRSA_DIGEST         "sha512"

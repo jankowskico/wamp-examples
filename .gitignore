@@ -1,0 +1,12 @@
+# python
+/venv
+
+# javascript
+/node_modules
+
+# php
+/vendor
+
+# cpp
+/dist
+/include

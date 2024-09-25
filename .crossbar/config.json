@@ -1,0 +1,96 @@
+{
+    "$schema": "https://raw.githubusercontent.com/crossbario/crossbar/master/crossbar.json",
+    "version": 2,
+    "controller": {},
+    "workers": [{
+        "type": "router",
+        "realms": [{
+            "name": "netherrealm",
+            "roles": [{
+                "name": "client",
+                "permissions": [{
+                    "uri": "",
+                    "match": "prefix",
+                    "allow": {
+                        "register": false,
+                        "call": true,
+                        "publish": false,
+                        "subscribe": true
+                    },
+                    "disclose": {
+                        "caller": false,
+                        "publisher": false
+                    },
+                    "cache": false
+                }]
+            }, {
+                "name": "service",
+                "permissions": [{
+                    "uri": "",
+                    "match": "prefix",
+                    "allow": {
+                        "register": true,
+                        "call": true,
+                        "publish": true,
+                        "subscribe": true
+                    },
+                    "disclose": {
+                        "caller": false,
+                        "publisher": false
+                    },
+                    "cache": false
+                }]
+            }]
+        }],
+        "transports": [{
+            "type": "websocket",
+            "endpoint": {
+                "type": "tcp",
+                "port": 8080,
+                "tls": {
+                    "key": "../certs/pki/private/localhost.key",
+                    "certificate": "../certs/pki/issued/localhost.crt",
+                    "dhparam": "../certs/pki/dh.pem"
+                }
+            },
+            "auth": {
+                "wampcra": {
+                    "type": "static",
+                    "users": {
+                        "client": {
+                            "secret": "8n5jvsMz",
+                            "role": "client"
+                        },
+                        "service": {
+                            "secret": "F7pvC9hQ",
+                            "role": "service"
+                        }
+                    }
+                }
+            },
+            "options": {
+                "allowed_origins": ["*"],
+                "allow_null_origin": true,
+                "enable_webstatus": false,
+                "max_frame_size": 1048576,
+                "max_message_size": 1048576,
+                "auto_fragment_size": 65536,
+                "fail_by_drop": true,
+                "open_handshake_timeout": 2500,
+                "close_handshake_timeout": 1000,
+                "auto_ping_interval": 5000,
+                "auto_ping_timeout": 2500,
+                "auto_ping_size": 25,
+                "compression": {
+                    "deflate": {
+                        "request_no_context_takeover": false,
+                        "request_max_window_bits": 13,
+                        "no_context_takeover": false,
+                        "max_window_bits": 13,
+                        "memory_level": 5
+                    }
+                }
+            }
+        }]
+    }]
+}

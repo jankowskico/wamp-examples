@@ -1,0 +1,7 @@
+{
+    "require": {
+        "voryx/thruway": "^0.6.0",
+        "thruway/pawl-transport": "^0.5.1",
+        "vlucas/phpdotenv": "^5.3"
+    }
+}
